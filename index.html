@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyes Ram Vijaykumar | Senior AI Engineer</title>
+    
+    <!-- Favicon: Animated Constellation 'S' -->
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><style>@keyframes pulse { 0%, 100% { opacity: 1; r: 8; } 50% { opacity: 0.6; r: 9; } } .star { animation: pulse 3s infinite ease-in-out; }</style><path d="M80 20 L35 20 L25 45 L75 55 L65 80 L20 80" stroke="%23f59e0b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="80" cy="20" r="8" fill="%23fbbf24" class="star" style="animation-delay:0s"/><circle cx="35" cy="20" r="6" fill="%23fbbf24" class="star" style="animation-delay:0.5s"/><circle cx="25" cy="45" r="8" fill="%23fbbf24" class="star" style="animation-delay:1s"/><circle cx="75" cy="55" r="6" fill="%23fbbf24" class="star" style="animation-delay:1.5s"/><circle cx="65" cy="80" r="8" fill="%23fbbf24" class="star" style="animation-delay:2s"/><circle cx="20" cy="80" r="6" fill="%23fbbf24" class="star" style="animation-delay:2.5s"/></svg>'>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        theme: {
+                            bg: 'var(--theme-bg)',
+                            text: 'var(--theme-text)',
+                            primary: 'var(--theme-primary)',
+                            'glass-bg': 'var(--theme-glass-bg)',
+                            'glass-border': 'var(--theme-glass-border)',
+                            nav: 'var(--theme-nav)',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- THEME DEFINITIONS --- */
+        :root {
+            /* Default: Gold Theme (As requested) */
+            --theme-bg: #0a0a0a;
+            --theme-text: #f5f5f5;
+            --theme-primary: #f59e0b; /* Amber 500 */
+            --theme-nav: rgba(10, 10, 10, 0.7);
+            --theme-glass-bg: rgba(23, 23, 23, 0.6);
+            --theme-glass-border: rgba(245, 158, 11, 0.2);
+            --theme-selection: rgba(245, 158, 11, 0.3);
+            --theme-gradient-from: #f59e0b;
+            --theme-gradient-to: #fbbf24;
+            --star-color-close: rgba(251, 191, 36, 0.8);
+            --star-color-far: #ffffff;
+            --line-color: rgba(245, 158, 11, 0.12);
+            --scroll-thumb: #404040;
+        }
+
+        [data-theme="blue"] {
+            --theme-bg: #020617;
+            --theme-text: #f8fafc;
+            --theme-primary: #818cf8; /* Indigo 400 */
+            --theme-nav: rgba(2, 6, 23, 0.8);
+            --theme-glass-bg: rgba(15, 23, 42, 0.6);
+            --theme-glass-border: rgba(129, 140, 248, 0.2);
+            --theme-selection: rgba(129, 140, 248, 0.3);
+            --theme-gradient-from: #818cf8;
+            --theme-gradient-to: #22d3ee;
+            --star-color-close: rgba(199, 210, 254, 0.8);
+            --star-color-far: #e0e7ff;
+            --line-color: rgba(224, 231, 255, 0.08);
+            --scroll-thumb: #334155;
+        }
+
+        [data-theme="emerald"] {
+            --theme-bg: #020604; /* Deep Green Black */
+            --theme-text: #ecfdf5;
+            --theme-primary: #34d399; /* Emerald 400 */
+            --theme-nav: rgba(2, 20, 10, 0.8);
+            --theme-glass-bg: rgba(6, 78, 59, 0.3);
+            --theme-glass-border: rgba(52, 211, 153, 0.2);
+            --theme-selection: rgba(52, 211, 153, 0.3);
+            --theme-gradient-from: #34d399;
+            --theme-gradient-to: #a7f3d0;
+            --star-color-close: rgba(110, 231, 183, 0.8);
+            --star-color-far: #d1fae5;
+            --line-color: rgba(52, 211, 153, 0.1);
+            --scroll-thumb: #064e3b;
+        }
+
+        [data-theme="crimson"] {
+            --theme-bg: #0f0204; /* Deep Red Black */
+            --theme-text: #fff1f2;
+            --theme-primary: #fb7185; /* Rose 400 */
+            --theme-nav: rgba(20, 2, 5, 0.8);
+            --theme-glass-bg: rgba(136, 19, 55, 0.25);
+            --theme-glass-border: rgba(251, 113, 133, 0.2);
+            --theme-selection: rgba(251, 113, 133, 0.3);
+            --theme-gradient-from: #fb7185;
+            --theme-gradient-to: #fca5a5;
+            --star-color-close: rgba(253, 164, 175, 0.8);
+            --star-color-far: #ffe4e6;
+            --line-color: rgba(251, 113, 133, 0.1);
+            --scroll-thumb: #881337;
+        }
+
+        [data-theme="amethyst"] {
+            --theme-bg: #0b0217; /* Deep Purple Black */
+            --theme-text: #f3e8ff;
+            --theme-primary: #c084fc; /* Purple 400 */
+            --theme-nav: rgba(15, 2, 30, 0.8);
+            --theme-glass-bg: rgba(88, 28, 135, 0.3);
+            --theme-glass-border: rgba(192, 132, 252, 0.2);
+            --theme-selection: rgba(192, 132, 252, 0.3);
+            --theme-gradient-from: #c084fc;
+            --theme-gradient-to: #e879f9;
+            --star-color-close: rgba(216, 180, 254, 0.8);
+            --star-color-far: #f3e8ff;
+            --line-color: rgba(192, 132, 252, 0.1);
+            --scroll-thumb: #581c87;
+        }
+
+        body {
+            background-color: var(--theme-bg);
+            color: var(--theme-text);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--theme-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scroll-thumb);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--theme-primary);
+        }
+
+        ::selection {
+            background-color: var(--theme-selection);
+            color: white;
+        }
+
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .glass-nav {
+            background: var(--theme-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--theme-glass-border);
+            transition: border-color 0.5s ease, background-color 0.5s ease;
+        }
+
+        .glass-card {
+            background: var(--theme-glass-bg); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--theme-glass-border);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: 3rem;
+            pointer-events: auto;
+            transition: border-color 0.5s ease, background-color 0.5s ease;
+        }
+
+        .section-fade {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #hero-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 1; 
+            pointer-events: auto; 
+        }
+
+        .hero-gradient-text {
+            background: linear-gradient(to right, var(--theme-gradient-from), var(--theme-gradient-to));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.5s ease;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px var(--theme-glass-border);
+        }
+        
+        .foreground-element {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem;
+            background: var(--theme-glass-bg);
+            border: 1px solid var(--theme-glass-border);
+            border-radius: 50%;
+            color: var(--theme-primary);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            background: var(--theme-glass-border);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 foreground-element" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Theme Toggle -->
+                <div class="flex-shrink-0 cursor-pointer group relative" id="logo-container" title="Click to cycle themes">
+                    <!-- SVG Canvas for Logo -->
+                    <svg id="logo-svg" class="h-12 w-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SRV Logo">
+                        <path id="logo-path" d="" stroke="var(--theme-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 transition-colors duration-500" />
+                        <g id="logo-dots"></g>
+                    </svg>
+                    <!-- Subtle tooltip hint -->
+                    <span class="absolute top-full left-1/2 -translate-x-1/2 mt-1 text-[10px] text-theme-primary opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Switch Theme</span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6 lg:space-x-8">
+                        <a href="#about" class="text-sm font-medium text-theme-text hover:text-theme-primary transition-colors">About</a>
+                        <a href="#experience" class="text-sm font-medium text-theme-text hover:text-theme-primary transition-colors">Experience</a>
+                        <a href="#projects" class="text-sm font-medium text-theme-text hover:text-theme-primary transition-colors">Projects</a>
+                        <a href="#leadership" class="text-sm font-medium text-theme-text hover:text-theme-primary transition-colors">Leadership</a>
+                        <a href="#awards" class="text-sm font-medium text-theme-text hover:text-theme-primary transition-colors">Awards</a>
+                        <a href="#testimonials" class="text-sm font-medium text-theme-text hover:text-theme-primary transition-colors">Testimonials</a>
+                        <a href="#contact" class="px-4 py-2 text-sm font-medium text-theme-primary bg-theme-primary/10 border border-theme-primary/20 rounded-full hover:bg-theme-primary/20 transition-all">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-theme-text hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-theme-nav backdrop-blur-xl border-b border-theme-glass-border">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-theme-text hover:bg-white/5">About</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-theme-text hover:bg-white/5">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-theme-text hover:bg-white/5">Projects</a>
+                <a href="#leadership" class="block px-3 py-2 rounded-md text-base font-medium text-theme-text hover:bg-white/5">Leadership</a>
+                <a href="#awards" class="block px-3 py-2 rounded-md text-base font-medium text-theme-text hover:bg-white/5">Awards</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-theme-text hover:bg-white/5">Testimonials</a>
+                <a href="#contact" class="block mt-4 px-3 py-2 text-center rounded-md text-base font-medium text-theme-primary bg-theme-primary/10 border border-theme-primary/20">Get In Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back To Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Canvas Background -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center foreground-element">
+            <div class="mb-6 inline-block">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide text-theme-primary bg-theme-primary/10 border border-theme-primary/20 animate-fade-in-up" style="animation-delay: 0.1s;">
+                    Available for opportunities
+                </span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                Hi, I'm <span class="hero-gradient-text">Shreyes Ram</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.3s;">
+                Senior Software Engineer & AI Researcher crafting intelligent solutions.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#projects" class="px-8 py-3 rounded-full bg-theme-primary text-black font-bold hover:opacity-90 transition-all shadow-[0_0_20px_var(--theme-glass-border)] hover:shadow-[0_0_30px_var(--theme-glass-border)]">
+                    View Work
+                </a>
+                <a href="#contact" class="px-8 py-3 rounded-full bg-theme-glass-bg text-theme-text font-semibold border border-theme-glass-border hover:bg-white/10 backdrop-blur-sm transition-all">
+                    Contact Me
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-6 animate-fade-in-up" style="animation-delay: 0.5s;" id="social-links">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-500">
+            <i data-lucide="chevron-down" class="w-6 h-6"></i>
+        </div>
+    </section>
+
+    <!-- Sections -->
+    <section id="about" class="py-24 foreground-element">
+        <div class="max-w-5xl mx-auto px-6 section-fade">
+            <div class="glass-card">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
+                    About Me
+                    <div class="h-px bg-gray-700 flex-grow ml-4"></div>
+                </h2>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="md:col-span-2 space-y-6 text-gray-300 text-lg leading-relaxed" id="about-content"></div>
+                    <div class="md:col-span-1">
+                        <div class="relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-theme-primary to-white/20 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                            <div class="relative bg-theme-bg rounded-lg p-6 border border-theme-glass-border">
+                                <h3 class="text-white font-semibold mb-4">Education</h3>
+                                <div id="education-list" class="space-y-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 foreground-element">
+        <div class="max-w-5xl mx-auto px-6 section-fade">
+            <div class="glass-card">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
+                    Experience
+                    <div class="h-px bg-gray-700 flex-grow ml-4"></div>
+                </h2>
+                <div class="space-y-12 border-l-2 border-gray-700 ml-3 pl-8 md:pl-12 relative" id="experience-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 foreground-element">
+        <div class="max-w-7xl mx-auto px-6 section-fade">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4 text-shadow-sm">
+                Featured Projects
+                <div class="h-px bg-gray-800 flex-grow ml-4 backdrop-blur-md"></div>
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid"></div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 foreground-element">
+        <div class="max-w-6xl mx-auto px-6 section-fade">
+            <div class="glass-card">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
+                    Technical Skills
+                    <div class="h-px bg-gray-700 flex-grow ml-4"></div>
+                </h2>
+                <div class="grid md:grid-cols-2 gap-10" id="skills-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="py-24 foreground-element">
+        <div class="max-w-6xl mx-auto px-6 section-fade">
+            <div class="glass-card">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
+                    Leadership & Volunteering
+                    <div class="h-px bg-gray-700 flex-grow ml-4"></div>
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8" id="leadership-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards" class="py-24 foreground-element">
+        <div class="max-w-5xl mx-auto px-6 section-fade">
+            <div class="glass-card">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
+                    Honors & Awards
+                    <div class="h-px bg-gray-700 flex-grow ml-4"></div>
+                </h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-gray-800 pb-2">
+                            <i data-lucide="trophy" class="text-theme-primary w-5 h-5"></i>
+                            Awards
+                        </h3>
+                        <ul class="space-y-4" id="awards-list"></ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-gray-800 pb-2">
+                            <i data-lucide="award" class="text-theme-primary w-5 h-5"></i>
+                            Certifications
+                        </h3>
+                        <ul class="space-y-4" id="certs-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-24 foreground-element">
+        <div class="max-w-6xl mx-auto px-6 section-fade">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
+                <span class="text-theme-primary">Testimonials</span>
+                <div class="h-px bg-gray-700 flex-grow ml-4"></div>
+            </h2>
+            <div class="relative group" id="testimonials-grid"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 text-center relative foreground-element">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-theme-primary/20 rounded-full blur-[100px] -z-10"></div>
+        <div class="max-w-3xl mx-auto px-6 section-fade">
+            <p class="text-theme-primary font-medium mb-4">What's Next?</p>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Get In Touch</h2>
+            <div class="glass-card text-left p-8 md:p-10 border-theme-glass-border">
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-white">Drop a message</h3>
+                    <p class="text-gray-400 text-sm">Casual chat or serious business — I'm all ears. You can even stay anonymous!</p>
+                </div>
+                <form id="contact-form" class="space-y-5">
+                    <div>
+                        <label for="user_name" class="block text-theme-primary text-xs font-bold uppercase tracking-wider mb-2">Name (Optional)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i data-lucide="user" class="w-5 h-5 text-gray-500"></i></div>
+                            <input type="text" name="user_name" id="user_name" placeholder="Anonymous Friend" class="w-full bg-theme-bg border border-gray-700 rounded-lg py-3 pl-10 pr-4 text-gray-200 placeholder-gray-600 focus:border-theme-primary focus:ring-1 focus:ring-theme-primary outline-none transition-all">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-theme-primary text-xs font-bold uppercase tracking-wider mb-2">Email (Optional)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i data-lucide="mail" class="w-5 h-5 text-gray-500"></i></div>
+                            <input type="email" name="email" id="email" placeholder="you@example.com" class="w-full bg-theme-bg border border-gray-700 rounded-lg py-3 pl-10 pr-4 text-gray-200 placeholder-gray-600 focus:border-theme-primary focus:ring-1 focus:ring-theme-primary outline-none transition-all">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-theme-primary text-xs font-bold uppercase tracking-wider mb-2">Message</label>
+                        <div class="relative">
+                            <textarea name="message" id="message" rows="4" required placeholder="Hey Shreyes, just wanted to say hi..." class="w-full bg-theme-bg border border-gray-700 rounded-lg p-4 text-gray-200 placeholder-gray-600 focus:border-theme-primary focus:ring-1 focus:ring-theme-primary outline-none transition-all"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full py-3 px-6 bg-theme-primary text-black font-bold rounded-lg hover:opacity-90 transition-all transform hover:-translate-y-1 shadow-lg shadow-theme-primary/20 flex justify-center items-center gap-2">
+                        <span>Send Message</span>
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                    <p id="form-status" class="text-center text-sm text-gray-400 mt-4 h-6"></p>
+                </form>
+            </div>
+            <div class="mt-20 pt-8 border-t border-gray-700/50 flex flex-col items-center gap-4">
+                <div class="flex gap-6" id="footer-socials"></div>
+                <p class="text-gray-500 text-sm">Designed & Built by Shreyes Ram Vijaykumar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- THEME MANAGER (5 Themes) ---
+            const logoContainer = document.getElementById('logo-container');
+            const themes = ['gold', 'blue', 'emerald', 'crimson', 'amethyst'];
+            
+            // Helper to get cached CSS variables (performance optimization)
+            let cachedThemeColors = {};
+            function updateThemeCache() {
+                const style = getComputedStyle(document.documentElement);
+                cachedThemeColors = {
+                    starClose: style.getPropertyValue('--star-color-close').trim(),
+                    starFar: style.getPropertyValue('--star-color-far').trim(),
+                    line: style.getPropertyValue('--line-color').trim()
+                };
+            }
+
+            // Load saved theme or default to gold
+            let currentThemeIndex = Math.max(0, themes.indexOf(localStorage.getItem('portfolio-theme') || 'gold'));
+            
+            function setTheme(index) {
+                const theme = themes[index];
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('portfolio-theme', theme);
+                updateThemeCache();
+            }
+
+            // Cycle through themes on click
+            logoContainer.addEventListener('click', () => {
+                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+                setTheme(currentThemeIndex);
+            });
+
+            // Init Theme
+            setTheme(currentThemeIndex);
+
+
+            // --- BACK TO TOP BUTTON ---
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+
+            // --- EMAIL JS ---
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("Ca7CApKhcqNmvPs9I");
+            } else {
+                console.warn("EmailJS script failed to load.");
+            }
+
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const btn = document.getElementById('submit-btn');
+                const statusMsg = document.getElementById('form-status');
+                const originalText = btn.innerHTML;
+                
+                if (typeof emailjs === 'undefined') {
+                    btn.innerHTML = '<span>Error</span> <i data-lucide="alert-circle" class="w-4 h-4"></i>';
+                    statusMsg.textContent = "Email service unavailable. Please try again later.";
+                    statusMsg.classList.add('text-red-400');
+                    return;
+                }
+
+                btn.innerHTML = '<span>Sending...</span>';
+                btn.disabled = true;
+                btn.classList.add('opacity-70', 'cursor-not-allowed');
+                emailjs.sendForm('emailbot', 'emailbot_template', this)
+                    .then(function() {
+                        btn.innerHTML = '<span>Sent!</span> <i data-lucide="check" class="w-4 h-4"></i>';
+                        statusMsg.textContent = "Thanks for reaching out! I'll get back to you soon.";
+                        statusMsg.classList.add('text-green-400');
+                        document.getElementById('contact-form').reset();
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                            btn.classList.remove('opacity-70', 'cursor-not-allowed');
+                            statusMsg.textContent = '';
+                            statusMsg.classList.remove('text-green-400');
+                        }, 5000);
+                    }, function(error) {
+                        console.error('FAILED...', error);
+                        btn.innerHTML = '<span>Failed</span> <i data-lucide="alert-circle" class="w-4 h-4"></i>';
+                        statusMsg.textContent = "Oops! Something went wrong. Please try again later.";
+                        statusMsg.classList.add('text-red-400');
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                            btn.classList.remove('opacity-70', 'cursor-not-allowed');
+                        }, 3000);
+                    });
+            });
+            lucide.createIcons();
+
+            const resumeData = {
+                name: "Shreyes Ram Vijaykumar",
+                title: "Senior Software Engineer | AI | FullStack | Quant | Research",
+                location: "Chennai, TN, IN",
+                bio: "Goal-oriented AI Engineer with over 3 years of professional experience in diverse technical fields including GenAI, Full-stack Development, Quant Research, and Automation. Currently pursuing M.Tech in AI/ML from BITS Pilani while driving innovation at EY GDS.",
+                contact: {
+                    email: "vsrbvrak@gmail.com",
+                    phone: "+91-70100-15304",
+                    linkedin: "https://www.linkedin.com/in/shreyes-ram-0918a71b7",
+                    github: "https://github.com/ShreyStar02",
+                    linktree: "https://linktr.ee/ShreyesRam"
+                },
+                education: [
+                    { degree: "M. Tech AI ML", institution: "BITS, Pilani", year: "2027 Batch" },
+                    { degree: "B. Tech CSE with AI ML Spl", institution: "VIT, Chennai", year: "2020 — 2024", grade: "CGPA: 8.92" }
+                ],
+                experience: [
+                    {
+                        title: "AI Full Stack Developer / Senior Software Engineer",
+                        company: "EY GDS LLP",
+                        location: "Chennai, TN",
+                        years: "Jan 2023 — Present",
+                        description: "Promoted to Senior Software Engineer in Jun 2024. Key contributions include designing the GenAI Doc Verifier using AzureAI & GPT, developing the Nexus Design System (Stencil+Storybook), and building multiple AI-driven chatbots (Python+React) for internal competency portals."
+                    },
+                    {
+                        title: "Quant Research and Application Developer Intern",
+                        company: "Futures First",
+                        location: "Bengaluru, KA",
+                        years: "Jan 2024 — Jun 2024",
+                        description: "Built a Realtime Trader Performance Analysis Dashboard using Python, Flask, and Dash. Developed a realtime trade data analysis tool using Lightstreamer and vanilla JS."
+                    }
+                ],
+                projects: [
+                    { name: "ML Assistant", tech: "Python, ML, Automation", description: "Winner of the Daisi Hackathon ($2500 Prize). Automated tools for Data Cleaning, Feature Extraction, Model Selection, and Training for any CSV dataset.", link: "#" },
+                    { name: "Dr. Tina", tech: "Python, GPT, CV, ML", description: "Winner of OpenAI Hackathon ($750 Prize). A system utilizing CV to identify skin diseases and a GPT-based AI Doctor to prescribe medication.", link: "#" },
+                    { name: "GenAI in Document Verification", tech: "Python, GPT, Azure AI, DONUT, ClipAI", description: "Humanless instant document verification system requiring minimal training sets (<10 samples). Leveraging OpenAI's GPT, ClovaAI's DONUT, and AzureAI.", link: "#" },
+                    { name: "Nexus Design System", tech: "TypeScript, React, Angular, Stencil, Storybook", description: "A comprehensive UX/UI Component Library for EY GDS. Handled component development, enhancements, and Storybook automation.", link: "#" },
+                    { name: "Marine Litter Quantifier", tech: "Python, Computer Vision, ML", description: "Uses Python and CV to identify and classify coastal wastes as Bio/Non-biodegradable or Recyclable. MDPI Publication in process.", link: "#" },
+                    { name: "Other AI Mini Projects", tech: "Python, Mediapipe, ML, CV", description: "Includes Face Emotion Recognition for Online Classes, Hand Gesture Detection for Custom Actions, IPL Predictor, and AI PDF OCR.", link: "#" }
+                ],
+                leadership: [
+                    { role: "Wing Head (TN, Kerala, Pondichery)", organization: "CoviCombat", description: "Sourced Medicines, Beds, ICU's, Oxygen, Blood, etc. to 500+ people during the resource crisis period of COVID-19 2nd Wave (2021)." },
+                    { role: "Advisor, Ex-VP", organization: "Voice-IT VITC Radio Club", description: "Created 200+ designs and coordinated various events and shows." },
+                    { role: "Joint Secretary", organization: "Dramatics Club VITC", description: "Director, Editor, Writer, and Organizer for 2 Short-films and Audio Plays." },
+                    { role: "Graphics Design Lead", organization: "CAD Club VITC", description: "Created 50+ designs for club activities." }
+                ],
+                skills: {
+                    "AI & ML": ["GenAI", "Computer Vision", "NLP", "Tensorflow", "Scikit-learn", "OpenAI GPT", "Azure AI", "Mediapipe"],
+                    "Languages": ["Python", "TypeScript", "JavaScript", "Java", "C++", "SQL", "C#"],
+                    "Frontend": ["React", "Angular", "Storybook", "Stencil", "HTML/CSS", "Tailwind"],
+                    "Backend": ["Node.js", "Flask", "MongoDB", "PHP"],
+                    "Tools": ["Figma", "Adobe", "Git", "Canva", "Clipchamp"]
+                },
+                awards: [
+                    "Winner - Daisi Hackathon ($2500)", "Winner - OpenAI Hackathon ($750)", "Azure AI-900 Certification (Score: 957/1000)", "2nd Runner Up - Amrita Cybernation CTF", "Semi-Finalist - Codefury 5.0 (UVCE Bengaluru)", "EY Badges: Bronze in AI & Responsible Business"
+                ],
+                certifications: [
+                    "Udemy: ChatGPT Masters, Sustainable Business, Digital Marketing, Data Science, Agility, Neuroplasticity", "Coursera: Data Science, Agility, SDG", "IBM Data Science & CISCO Packet Tracer", "NPTEL: Emotional Intelligence, Python Computing"
+                ],
+                testimonials: [
+                    { name: "Sarah Jenkins", role: "Senior Manager at EY GDS", text: "Shreyes is a standout engineer. His work on the Nexus Design System significantly accelerated our internal development cycles. He combines deep technical skill with a keen eye for design." },
+                    { name: "David Chen", role: "Hackathon Teammate", text: "Working with Shreyes during the Daisi Hackathon was an absolute pleasure. His ability to quickly architect complex AI solutions under pressure is unmatched. A true problem solver." },
+                    { name: "Dr. A. Kumar", role: "Professor, VIT Chennai", text: "One of the most dedicated students I've mentored. His project on Marine Litter Quantification showed a maturity in applying Computer Vision that is rare at the undergraduate level." },
+                    { name: "Michael Ross", role: "Project Lead at Futures First", text: "Shreyes' work on the Realtime Trader Performance Dashboard was exceptional. He mastered our proprietary tech stack in record time and delivered a tool our traders use daily." }
+                ]
+            };
+
+            const createSocialLink = (icon, url) => `<a href="${url}" target="_blank" class="text-gray-400 hover:text-theme-primary transition-colors hover:-translate-y-1 transform duration-200"><i data-lucide="${icon}" class="w-6 h-6"></i></a>`;
+            const socialHtml = `
+                ${createSocialLink('github', resumeData.contact.github)}
+                ${createSocialLink('linkedin', resumeData.contact.linkedin)}
+                ${createSocialLink('link', resumeData.contact.linktree)}
+                <a href="mailto:${resumeData.contact.email}" class="text-gray-400 hover:text-theme-primary transition-colors hover:-translate-y-1 transform duration-200"><i data-lucide="mail" class="w-6 h-6"></i></a>
+            `;
+            document.getElementById('social-links').innerHTML = socialHtml;
+            document.getElementById('footer-socials').innerHTML = socialHtml;
+            document.getElementById('about-content').innerHTML = `<p>${resumeData.bio}</p>`;
+            document.getElementById('education-list').innerHTML = resumeData.education.map(edu => `
+                <div class="border-l-2 border-theme-primary/30 pl-3">
+                    <p class="text-sm text-white font-semibold">${edu.degree}</p>
+                    <p class="text-xs text-gray-400">${edu.institution}</p>
+                    <p class="text-xs text-gray-500">${edu.year} ${edu.grade ? ' • ' + edu.grade : ''}</p>
+                </div>`).join('');
+            document.getElementById('experience-list').innerHTML = resumeData.experience.map(exp => `
+                <div class="relative">
+                    <span class="absolute -left-[41px] md:-left-[57px] top-1 w-4 h-4 rounded-full bg-theme-bg border-2 border-theme-primary z-10"></span>
+                    <div class="mb-8 hover-lift bg-theme-glass-bg p-6 rounded-lg border border-theme-glass-border backdrop-blur-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">${exp.title}</h3>
+                            <span class="text-sm text-theme-primary font-mono bg-theme-primary/10 px-2 py-1 rounded mt-2 sm:mt-0 w-fit">${exp.years}</span>
+                        </div>
+                        <p class="text-gray-200 mb-4 text-sm">${exp.company} • ${exp.location}</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">${exp.description}</p>
+                    </div>
+                </div>`).join('');
+            document.getElementById('projects-grid').innerHTML = resumeData.projects.map(proj => `
+                <div class="glass-card p-6 group hover:border-theme-primary/40 transition-all duration-300 hover:-translate-y-2 flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-theme-primary"><i data-lucide="folder" class="w-10 h-10"></i></div>
+                        <div class="flex gap-3"><a href="${proj.link}" class="text-gray-400 hover:text-white"><i data-lucide="external-link" class="w-5 h-5"></i></a></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-theme-primary transition-colors">${proj.name}</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">${proj.description}</p>
+                    <div class="flex flex-wrap gap-2 mt-4">${proj.tech.split(',').map(t => `<span class="text-xs font-mono text-theme-primary/80">${t.trim()}</span>`).join('')}</div>
+                </div>`).join('');
+            let skillsHtml = '';
+            for (const [category, items] of Object.entries(resumeData.skills)) {
+                skillsHtml += `<div><h3 class="text-white font-semibold mb-4 border-b border-gray-800 pb-2">${category}</h3><div class="flex flex-wrap gap-2">${items.map(skill => `<span class="px-3 py-1.5 text-xs font-medium text-gray-100 bg-theme-primary/10 rounded-full border border-theme-primary/10 hover:border-theme-primary/30 transition-colors cursor-default">${skill}</span>`).join('')}</div></div>`;
+            }
+            document.getElementById('skills-container').innerHTML = skillsHtml;
+            document.getElementById('leadership-grid').innerHTML = resumeData.leadership.map(role => `
+                <div class="bg-theme-glass-bg p-5 rounded-lg border border-theme-glass-border hover:border-theme-primary/30 transition-colors backdrop-blur-sm">
+                    <h3 class="text-lg font-bold text-white">${role.role}</h3>
+                    <p class="text-theme-primary text-sm mb-2">${role.organization}</p>
+                    <p class="text-gray-400 text-sm">${role.description}</p>
+                </div>`).join('');
+            document.getElementById('awards-list').innerHTML = resumeData.awards.map(item => `<li class="flex items-start gap-3 text-gray-400 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-theme-primary mt-1 flex-shrink-0"></i><span>${item}</span></li>`).join('');
+            document.getElementById('certs-list').innerHTML = resumeData.certifications.map(item => `<li class="flex items-start gap-3 text-gray-400 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-theme-primary mt-1 flex-shrink-0"></i><span>${item}</span></li>`).join('');
+
+            // --- CAROUSEL ---
+            const testimonialsGrid = document.getElementById('testimonials-grid');
+            testimonialsGrid.className = "relative group"; 
+            testimonialsGrid.innerHTML = `
+                <div class="overflow-hidden rounded-2xl"><div id="carousel-track" class="flex transition-transform duration-500 ease-in-out gap-8"></div></div>
+                <button id="prev-btn" class="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 p-3 rounded-full bg-gray-900/80 text-theme-primary border border-gray-700 hover:border-theme-primary hover:bg-gray-800 transition-all opacity-0 group-hover:opacity-100 z-10"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+                <button id="next-btn" class="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 p-3 rounded-full bg-gray-900/80 text-theme-primary border border-gray-700 hover:border-theme-primary hover:bg-gray-800 transition-all opacity-0 group-hover:opacity-100 z-10"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+            `;
+            const track = document.getElementById('carousel-track');
+            // Updated createCard with Font Awesome Icon and explicit sizing
+            const createCard = (t) => `
+                <div class="glass-card p-8 flex-shrink-0 flex flex-col h-full relative overflow-hidden" style="box-sizing: border-box;">
+                    <div class="mb-6 text-theme-primary/30">
+                        <i class="fa-solid fa-quote-left text-4xl"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed flex-grow relative z-10">"${t.text}"</p>
+                    <div class="flex items-center gap-3 mt-auto relative z-10">
+                        <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-theme-primary font-bold border border-theme-primary/20 shrink-0">${t.name.charAt(0)}</div>
+                        <div><h4 class="text-white font-semibold text-sm">${t.name}</h4><p class="text-theme-primary text-xs truncate">${t.role}</p></div>
+                    </div>
+                </div>`;
+            
+            resumeData.testimonials.forEach(t => track.innerHTML += createCard(t));
+            for(let i=0; i<3; i++) if(resumeData.testimonials[i]) track.innerHTML += createCard(resumeData.testimonials[i]);
+
+            let currentIndex = 0;
+            const totalItems = resumeData.testimonials.length;
+            let itemWidth, gap = 32;
+            
+            const updateDimensions = () => {
+                const containerWidth = track.parentElement.offsetWidth;
+                if(window.innerWidth >= 1024) itemWidth = (containerWidth - (gap * 2)) / 3;
+                else if (window.innerWidth >= 768) itemWidth = (containerWidth - gap) / 2;
+                else itemWidth = containerWidth;
+                
+                // Force width on children via JS to override any CSS conflicts
+                Array.from(track.children).forEach(child => {
+                    child.style.width = `${itemWidth}px`;
+                    child.style.minWidth = `${itemWidth}px`;
+                    child.style.maxWidth = `${itemWidth}px`;
+                });
+                updateCarousel(false);
+            };
+
+            const updateCarousel = (animate = true) => {
+                track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+                const translateX = -(currentIndex * (itemWidth + gap));
+                track.style.transform = `translateX(${translateX}px)`;
+            };
+
+            const nextSlide = () => {
+                if (currentIndex >= totalItems) {
+                    track.style.transition = 'none';
+                    currentIndex = 0;
+                    updateCarousel(false);
+                    void track.offsetWidth; 
+                    setTimeout(() => { track.style.transition = 'transform 0.5s ease-in-out'; currentIndex++; updateCarousel(true); }, 10);
+                } else {
+                    currentIndex++;
+                    updateCarousel(true);
+                }
+            };
+
+            const prevSlide = () => {
+                if (currentIndex <= 0) {
+                    track.style.transition = 'none';
+                    currentIndex = totalItems;
+                    updateCarousel(false);
+                    void track.offsetWidth;
+                    setTimeout(() => { track.style.transition = 'transform 0.5s ease-in-out'; currentIndex--; updateCarousel(true); }, 10);
+                } else {
+                    currentIndex--;
+                    updateCarousel(true);
+                }
+            };
+
+            document.getElementById('next-btn').addEventListener('click', nextSlide);
+            document.getElementById('prev-btn').addEventListener('click', prevSlide);
+            window.addEventListener('resize', updateDimensions);
+            let autoPlay = setInterval(nextSlide, 4000);
+            testimonialsGrid.addEventListener('mouseenter', () => clearInterval(autoPlay));
+            testimonialsGrid.addEventListener('mouseleave', () => autoPlay = setInterval(nextSlide, 4000));
+            setTimeout(updateDimensions, 100);
+            
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.section-fade').forEach(section => observer.observe(section));
+
+            // --- PHYSICS & THEMING ---
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+            let constellations = [], bgStars = [], mouse = { x: -9999, y: -9999 }, draggedStar = null;
+            const SETTINGS = { maxConstellations: 12, maxBgStars: 250, driftSpeed: 0.15, mouseRepelRadius: 120, mouseRepelForce: 0.05, springStiffness: 0.03, damping: 0.85, dragStrength: 0.1, grabRadius: 150, maxConnectionDist: 1000, constellationRepelRadius: 250, constellationRepelForce: 0.2 };
+
+            const resizeCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+            let resizeTimeout;
+            window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(() => { resizeCanvas(); initSystem(); }, 100); });
+            resizeCanvas();
+
+            // Helper to get CSS variable value
+            function getCssVar(name) {
+                return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+            }
+
+            class Star {
+                constructor(x, y, isBackground = false) {
+                    this.x = x; this.y = y; this.isBackground = isBackground;
+                    this.z = isBackground ? Math.random() * 4 + 1 : 1; 
+                    const speedMult = 1 / this.z;
+                    this.baseVx = (Math.random() - 0.5) * SETTINGS.driftSpeed * speedMult;
+                    this.baseVy = (Math.random() - 0.5) * SETTINGS.driftSpeed * speedMult;
+                    this.vx = this.baseVx; this.vy = this.baseVy;
+                    const baseRadius = Math.random() * 1.5 + 0.5;
+                    this.radius = baseRadius / (this.z * 0.5); 
+                    this.glowPhase = Math.random() * Math.PI * 2;
+                    this.baseAlpha = (0.7 + Math.random() * 0.3) / this.z; 
+                }
+                update() {
+                    this.vx += this.baseVx * 0.1; this.vy += this.baseVy * 0.1;
+                    this.vx *= SETTINGS.damping; this.vy *= SETTINGS.damping;
+                    this.x += this.vx; this.y += this.vy;
+                    this.glowPhase += 0.03;
+                }
+                draw(ctx) {
+                    const glow = Math.sin(this.glowPhase) * 0.3 + 0.7; 
+                    ctx.globalAlpha = this.baseAlpha * (this.isBackground ? glow : 1);
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+                    
+                    // Dynamic Color
+                    if (this.z > 3) {
+                        ctx.fillStyle = cachedThemeColors.starFar || '#ffffff';
+                    } else {
+                        ctx.fillStyle = cachedThemeColors.starClose || '#f59e0b'; 
+                    }
+                    
+                    ctx.fill();
+                    ctx.globalAlpha = 1.0;
+                }
+            }
+
+            class Constellation {
+                constructor(x, y) {
+                    this.stars = []; this.edges = []; this.centerX = x; this.centerY = y; this.alpha = 0; this.dissolve = false;
+                    const numStars = Math.floor(Math.random() * 4) + 3; 
+                    let cx = x, cy = y;
+                    this.stars.push(new Star(cx, cy)); 
+                    for(let i=1; i<numStars; i++) {
+                        const parentIdx = Math.random() > 0.6 ? Math.floor(Math.random() * i) : i-1;
+                        const parent = this.stars[parentIdx];
+                        const angle = Math.random() * Math.PI * 2;
+                        const dist = 50 + Math.random() * 70; 
+                        const nx = parent.x + Math.cos(angle) * dist;
+                        const ny = parent.y + Math.sin(angle) * dist;
+                        this.stars.push(new Star(nx, ny));
+                        this.edges.push({ p1: parentIdx, p2: i, length: dist });
+                    }
+                }
+                calculateCenter() {
+                    let sumX = 0, sumY = 0;
+                    this.stars.forEach(s => { sumX += s.x; sumY += s.y; });
+                    this.centerX = sumX / this.stars.length;
+                    this.centerY = sumY / this.stars.length;
+                }
+                update() {
+                    if (this.dissolve) { this.alpha -= 0.01; if (this.alpha < 0) this.alpha = 0; } 
+                    else if (this.alpha < 1) this.alpha += 0.005; 
+                    if (!draggedStar) {
+                        this.stars.forEach(s => {
+                            const dx = s.x - mouse.x; const dy = s.y - mouse.y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+                            if (dist < SETTINGS.mouseRepelRadius) {
+                                const force = (SETTINGS.mouseRepelRadius - dist) / SETTINGS.mouseRepelRadius;
+                                s.vx += (dx/dist) * force * SETTINGS.mouseRepelForce;
+                                s.vy += (dy/dist) * force * SETTINGS.mouseRepelForce;
+                            }
+                        });
+                    }
+                    this.edges.forEach(edge => {
+                        const s1 = this.stars[edge.p1]; const s2 = this.stars[edge.p2];
+                        const dx = s2.x - s1.x; const dy = s2.y - s1.y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        const targetDist = edge.length; 
+                        const force = (dist - targetDist) * SETTINGS.springStiffness;
+                        const fx = (dx/dist) * force; const fy = (dy/dist) * force;
+                        s1.vx += fx; s1.vy += fy; s2.vx -= fx; s2.vy -= fy;
+                    });
+                    this.stars.forEach(s => s.update());
+                    this.calculateCenter(); 
+                }
+                draw() {
+                    if (this.alpha <= 0) return; 
+                    ctx.globalAlpha = this.alpha * 0.8; 
+                    ctx.strokeStyle = cachedThemeColors.line || '#f59e0b';
+                    ctx.lineWidth = 0.8; 
+                    ctx.beginPath();
+                    this.edges.forEach(edge => {
+                        const s1 = this.stars[edge.p1]; const s2 = this.stars[edge.p2];
+                        ctx.moveTo(s1.x, s1.y); ctx.lineTo(s2.x, s2.y);
+                    });
+                    ctx.stroke();
+                    this.stars.forEach(s => s.draw(ctx));
+                    ctx.globalAlpha = 1.0; 
+                }
+                isOffScreen() {
+                    const buffer = 300;
+                    return (this.centerX < -buffer || this.centerX > canvas.width + buffer || this.centerY < -buffer || this.centerY > canvas.height + buffer);
+                }
+            }
+
+            function spawnConstellationInVoid() {
+                let bestX = Math.random() * canvas.width; let bestY = Math.random() * canvas.height; let bestDist = 0;
+                for (let i = 0; i < 8; i++) {
+                    const rx = Math.random() * canvas.width; const ry = Math.random() * canvas.height; let nearest = Infinity;
+                    if (constellations.length === 0) nearest = Infinity;
+                    else {
+                        constellations.forEach(c => {
+                            const d = Math.hypot(c.centerX - rx, c.centerY - ry);
+                            if (d < nearest) nearest = d;
+                        });
+                    }
+                    if (nearest > bestDist) { bestDist = nearest; bestX = rx; bestY = ry; }
+                }
+                if (bestDist > 300 || constellations.length === 0) constellations.push(new Constellation(bestX, bestY));
+            }
+
+            function initSystem() {
+                constellations = []; bgStars = [];
+                for(let i=0; i<8; i++) spawnConstellationInVoid();
+                for(let i=0; i<SETTINGS.maxBgStars; i++) bgStars.push(new Star(Math.random() * canvas.width, Math.random() * canvas.height, true));
+            }
+
+            window.addEventListener('mousemove', e => {
+                mouse.x = e.clientX; mouse.y = e.clientY;
+                if (draggedStar) {
+                    const dx = mouse.x - draggedStar.x; const dy = mouse.y - draggedStar.y;
+                    draggedStar.vx += dx * SETTINGS.dragStrength; draggedStar.vy += dy * SETTINGS.dragStrength;
+                    const el = document.elementFromPoint(mouse.x, mouse.y);
+                    if (el && el.closest('.foreground-element, .glass-card, button, a')) {
+                        draggedStar = null; document.body.classList.remove('no-select');
+                    }
+                }
+            });
+
+            window.addEventListener('mousedown', () => {
+                let closestStar = null; let minDistance = SETTINGS.grabRadius;
+                constellations.forEach(c => {
+                    c.stars.forEach(s => {
+                        const dist = Math.hypot(s.x - mouse.x, s.y - mouse.y);
+                        if (dist < minDistance) { minDistance = dist; closestStar = s; }
+                    });
+                });
+                if (closestStar) { draggedStar = closestStar; document.body.classList.add('no-select'); }
+            });
+
+            window.addEventListener('mouseup', () => { draggedStar = null; document.body.classList.remove('no-select'); });
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                bgStars.forEach(s => {
+                    if(s.x < 0) s.x = canvas.width; if(s.x > canvas.width) s.x = 0;
+                    if(s.y < 0) s.y = canvas.height; if(s.y > canvas.height) s.y = 0;
+                    s.x += (Math.random() - 0.5) * 0.05 + s.baseVx * 0.2; s.y += (Math.random() - 0.5) * 0.05 + s.baseVy * 0.2;
+                    const dx = s.x - mouse.x; const dy = s.y - mouse.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if(dist < 100) { s.x += (dx/dist) * 0.2 * (1/s.z); s.y += (dy/dist) * 0.2 * (1/s.z); }
+                    s.update(); s.draw(ctx);
+                });
+                
+                for (let i = constellations.length - 1; i >= 0; i--) {
+                    if (constellations[i].isOffScreen() || (constellations[i].dissolve && constellations[i].alpha <= 0)) constellations.splice(i, 1);
+                }
+                
+                if (constellations.length < SETTINGS.maxConstellations) { if (Math.random() < 0.01) spawnConstellationInVoid(); }
+
+                for (let i = 0; i < constellations.length; i++) {
+                    for (let j = i + 1; j < constellations.length; j++) {
+                        const c1 = constellations[i]; const c2 = constellations[j];
+                        if (c1.dissolve || c2.dissolve) continue;
+                        const dx = c1.centerX - c2.centerX; const dy = c1.centerY - c2.centerY;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < 100) {
+                            let isDraggingC1 = false; let isDraggingC2 = false;
+                            if (draggedStar) { isDraggingC1 = c1.stars.includes(draggedStar); isDraggingC2 = c2.stars.includes(draggedStar); }
+                            if (!isDraggingC1 && !isDraggingC2) { c1.dissolve = true; continue; }
+                        }
+                        if (dist < SETTINGS.constellationRepelRadius) {
+                            const force = (SETTINGS.constellationRepelRadius - dist) / SETTINGS.constellationRepelRadius;
+                            const pushX = (dx / dist) * force * SETTINGS.constellationRepelForce;
+                            const pushY = (dy / dist) * force * SETTINGS.constellationRepelForce;
+                            c1.stars.forEach(s => { s.vx += pushX; s.vy += pushY; });
+                            c2.stars.forEach(s => { s.vx -= pushX; s.vy -= pushY; });
+                        }
+                    }
+                }
+                constellations.forEach(c => { c.update(); c.draw(ctx); });
+                requestAnimationFrame(animate);
+            }
+            initSystem(); animate();
+
+            // --- LOGO ---
+            (function() {
+                const pathEl = document.getElementById('logo-path');
+                const dotsGroup = document.getElementById('logo-dots');
+                const logoContainer = document.getElementById('logo-container');
+                const pointsData = [{ x: 80, y: 20 }, { x: 35, y: 20 }, { x: 25, y: 45 }, { x: 75, y: 55 }, { x: 65, y: 80 }, { x: 20, y: 80 }];
+                const dots = pointsData.map((pt, i) => {
+                    const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    dot.setAttribute("r", i % 2 === 0 ? 4 : 3);
+                    // Dynamic Fill for Dots using SVG currentColor (sort of) or updating manually
+                    // For SVG inside HTML, we can use CSS vars!
+                    // dot.setAttribute("fill", "var(--theme-primary)"); // This works in modern browsers
+                    // Let's use JS update in animation loop to be safe or CSS class
+                    dot.style.fill = i % 2 === 0 ? "var(--text-secondary)" : "var(--theme-primary)";
+                    
+                    dotsGroup.appendChild(dot);
+                    return { el: dot, baseX: pt.x, baseY: pt.y, phaseX: Math.random()*6, phaseY: Math.random()*6, speedX: 0.03+Math.random()*0.04, speedY: 0.03+Math.random()*0.04, ampX: 1.5, ampY: 1.5 };
+                });
+                
+                let time = 0; let isHovering = false;
+                logoContainer.addEventListener('mouseenter', () => isHovering = true);
+                logoContainer.addEventListener('mouseleave', () => isHovering = false);
+                
+                function animateLogo() {
+                    time += 1; let d = "";
+                    dots.forEach((dot, i) => {
+                        const speedMult = isHovering ? 2.5 : 1; const ampMult = isHovering ? 2 : 1;
+                        const cx = dot.baseX + Math.sin(time*dot.speedX*speedMult+dot.phaseX)*dot.ampX*ampMult;
+                        const cy = dot.baseY + Math.cos(time*dot.speedY*speedMult+dot.phaseY)*dot.ampY*ampMult;
+                        dot.el.setAttribute("cx", cx); dot.el.setAttribute("cy", cy);
+                        d += (i===0 ? "M" : " L") + `${cx} ${cy}`;
+                        
+                        // Force color update based on theme
+                        dot.el.style.fill = i % 2 === 0 ? "var(--theme-text)" : "var(--theme-primary)";
+                    });
+                    pathEl.setAttribute("d", d);
+                    requestAnimationFrame(animateLogo);
+                }
+                animateLogo();
+            })();
+        });
+    </script>
+</body>
+</html>
