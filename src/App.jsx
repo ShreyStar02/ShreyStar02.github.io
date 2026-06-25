@@ -13,22 +13,22 @@ import BackToTop from './components/BackToTop.jsx';
 import { useScrollReveal } from './hooks/useScrollReveal.js';
 
 export default function App() {
-  useScrollReveal();
+    useScrollReveal();
 
-  return (
-    <>
-      <ConstellationCanvas />
-      <Navbar />
-      <BackToTop />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Leadership />
-      <Awards />
-      <Testimonials />
-      <Contact />
-    </>
-  );
+    return (
+        <>
+            <ConstellationCanvas />
+            <Navbar />
+            <BackToTop />
+            <Hero />
+            <About />
+            <Experience />
+            <Projects />
+            <Skills />
+            <Leadership />
+            <Awards />
+            <Testimonials />
+            <Contact />
+        </>
+    );
 }
