@@ -84,8 +84,12 @@ export default function ConstellationCanvas() {
         const initSystem = () => {
             world.constellations = [];
             world.bgStars = [];
-            for (let i = 0; i < 8; i++) spawnConstellationInVoid();
-            for (let i = 0; i < SETTINGS.maxBgStars; i++) {
+            // Lighten the simulation on small screens for smoother mobile performance.
+            const isSmall = window.innerWidth < 768;
+            const initialConstellations = isSmall ? 5 : 8;
+            const bgStarCount = isSmall ? 120 : SETTINGS.maxBgStars;
+            for (let i = 0; i < initialConstellations; i++) spawnConstellationInVoid();
+            for (let i = 0; i < bgStarCount; i++) {
                 world.bgStars.push(new Star(Math.random() * canvas.width, Math.random() * canvas.height, true, world));
             }
         };
@@ -131,11 +135,46 @@ export default function ConstellationCanvas() {
                 world.draggedStar = closestStar;
                 document.body.classList.add('no-select');
             }
+            return closestStar;
         };
 
         const onMouseUp = () => {
             world.draggedStar = null;
             document.body.classList.remove('no-select');
+        };
+
+        // --- Touch support (mobile / tablets) ---
+        // Mirrors the mouse behaviour: tap-and-hold near a star grabs it, drag flings it.
+        const onTouchStart = (e) => {
+            const t = e.touches[0];
+            if (!t) return;
+            // Never hijack taps on interactive UI (links, buttons, form fields).
+            if (e.target.closest && e.target.closest('a, button, input, textarea, select, label')) return;
+            world.mouse.x = t.clientX;
+            world.mouse.y = t.clientY;
+            const grabbed = onMouseDown();
+            // Only swallow the gesture (blocking page scroll) when a star was actually grabbed.
+            if (grabbed) e.preventDefault();
+        };
+
+        const onTouchMove = (e) => {
+            const t = e.touches[0];
+            if (!t) return;
+            if (world.draggedStar) {
+                e.preventDefault(); // stop the page from scrolling while dragging a star
+                onMouseMove({ clientX: t.clientX, clientY: t.clientY });
+            } else {
+                // Track the finger for the repel effect without blocking scroll.
+                world.mouse.x = t.clientX;
+                world.mouse.y = t.clientY;
+            }
+        };
+
+        const onTouchEnd = () => {
+            onMouseUp();
+            // Park the influence point off-screen so stars settle once the finger lifts.
+            world.mouse.x = -9999;
+            world.mouse.y = -9999;
         };
 
         let rafId;
@@ -224,6 +263,11 @@ export default function ConstellationCanvas() {
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mouseup', onMouseUp);
+        // passive:false is required so we can preventDefault to stop scroll while dragging.
+        window.addEventListener('touchstart', onTouchStart, { passive: false });
+        window.addEventListener('touchmove', onTouchMove, { passive: false });
+        window.addEventListener('touchend', onTouchEnd);
+        window.addEventListener('touchcancel', onTouchEnd);
 
         return () => {
             cancelAnimationFrame(rafId);
@@ -232,6 +276,10 @@ export default function ConstellationCanvas() {
             window.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('mousedown', onMouseDown);
             window.removeEventListener('mouseup', onMouseUp);
+            window.removeEventListener('touchstart', onTouchStart);
+            window.removeEventListener('touchmove', onTouchMove);
+            window.removeEventListener('touchend', onTouchEnd);
+            window.removeEventListener('touchcancel', onTouchEnd);
         };
     }, []);
 
