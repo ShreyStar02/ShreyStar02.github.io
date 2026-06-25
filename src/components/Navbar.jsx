@@ -15,7 +15,7 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav className="fixed w-full z-50 glass-nav transition-all duration-300 foreground-element">
+        <nav className="!fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300 foreground-element">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <Logo />
