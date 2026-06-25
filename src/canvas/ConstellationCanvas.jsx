@@ -148,9 +148,15 @@ export default function ConstellationCanvas() {
         const onTouchStart = (e) => {
             const t = e.touches[0];
             if (!t) return;
-            // Never hijack taps on the navbar or any interactive UI (links, buttons, the
-            // theme-toggle logo, form fields). `nav` covers the logo/hamburger/menu items.
-            if (e.target.closest && e.target.closest('nav, a, button, input, textarea, select, label')) return;
+            // Only play with stars when the touch starts on the bare background.
+            // If it begins on any foreground content (section wrappers, glass cards,
+            // navbar, links, buttons, form fields), let the browser handle it natively
+            // so the user can scroll/tap/select normally.
+            if (
+                e.target.closest &&
+                e.target.closest('.foreground-element, .glass-card, nav, a, button, input, textarea, select, label')
+            )
+                return;
             world.mouse.x = t.clientX;
             world.mouse.y = t.clientY;
             const grabbed = onMouseDown();
