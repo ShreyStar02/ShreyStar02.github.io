@@ -154,7 +154,10 @@ body {
   height: 100%;
   z-index: -1;
   opacity: 1;
-  pointer-events: auto;
+  /* Star dragging is handled via window-level listeners, so the canvas itself
+     must not capture pointer/touch events — otherwise it can block taps on the
+     navbar (logo, hamburger, menu) on mobile. */
+  pointer-events: none;
 }
 
 .hero-gradient-text {
