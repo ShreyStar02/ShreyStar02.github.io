@@ -285,10 +285,16 @@ export default function ConstellationCanvas() {
     }, []);
 
     // Refresh cached colors whenever the theme changes.
+    // Deferred via rAF: child effects run before the parent ThemeContext effect that
+    // sets `data-theme`, so reading immediately would pick up the *previous* theme's
+    // CSS variables (colors lagging one click behind). rAF runs after both effects.
     useEffect(() => {
-        if (worldRef.current) {
-            worldRef.current.colors = readThemeColors();
-        }
+        const id = requestAnimationFrame(() => {
+            if (worldRef.current) {
+                worldRef.current.colors = readThemeColors();
+            }
+        });
+        return () => cancelAnimationFrame(id);
     }, [theme]);
 
     return <canvas id="hero-canvas" ref={canvasRef} />;
